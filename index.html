@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClassCompass</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+    <meta name="theme-color" content="#1f9442">
+</head>
+<body>
+    <div id="login-screen" class="min-h-screen gradient-bg flex-center p-4">
+        <div class="card text-center">
+            <h2 class="text-4xl font-bold mb-6">Welcome to ClassCompass!</h2>
+            <p class="text-lg text-gray-600 mb-8">
+                Please sign in to explore the interactive map and find your way around campus.
+            </p>
+            <p class="text-sm text-red-600 mb-4 font-semibold">
+                Disclaimer: This is a client-side password check and is NOT secure for sensitive data.
+                The password is visible in the source code.
+            </p>
+            <form id="login-form" class="space-y-5">
+                <div>
+                    <label for="username" class="block-label">Username</label>
+                    <input type="text" id="username" class="input-field" placeholder="Enter your username" required>
+                </div>
+                <div>
+                    <label for="password" class="block-label">Password</label>
+                    <input type="password" id="password" class="input-field" placeholder="Enter your password" required>
+                </div>
+                <p id="error-message" class="text-red-500 text-sm font-medium hidden"></p>
+                <button type="submit" class="btn btn-primary w-full">Sign In</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="app-screen" class="min-h-screen gradient-bg flex-col-center p-4" style="display: none;">
+        <div id="notification" class="notification hidden">
+            <span>Welcome to ClassCompass</span>
+            <button class="close-btn">&times;</button>
+        </div>
+        <div class="card w-full max-w-5xl mb-6 text-center">
+            <div class="header-section">
+                <h1 class="text-4xl font-extrabold">ClassCompass</h1>
+                <div class="user-info">
+                    Welcome back, <span id="display-username" class="font-semibold capitalize"></span>!
+                    <button id="logout-button" class="btn btn-danger btn-sm">Logout</button>
+                </div>
+            </div>
+            <p class="text-lg text-gray-600 mb-6">
+                New to our school? Search for a classroom or select a section to find its location!🥳🥳🥳🥳🥳
+            </p>
+
+            <div class="search-section">
+                <input type="text" id="search-input" class="input-field flex-grow" placeholder="e.g., Library, Room M-101">
+                <button id="search-button" class="btn btn-primary">Search</button>
+            </div>
+            <p id="search-error-message" class="text-red-600 font-medium text-center mt-4 hidden"></p>
+
+            <!-- Section Navigation -->
+            <div class="section-nav mb-6">
+                <button class="btn btn-primary section-btn" data-section="maths">Maths Corridor</button>
+                <button class="btn btn-secondary section-btn" data-section="xboxes">X-Boxes</button>
+            </div>
+
+            <!-- Scrollable Sections -->
+            <div class="sections-container">
+                <div class="section" data-section="maths">
+                    <h2 class="text-2xl font-bold mb-4">Maths Corridor</h2>
+                    <div class="map-container relative w-full aspect-video bg-gray-100 rounded-lg overflow-hidden shadow-inner border border-gray-200">
+                        <img id="school-map-maths" src="https://i.imgur.com/NFOx4Bw.jpeg" alt="Maths Corridor Map">
+                        <div id="marker-container-maths"></div>
+                    </div>
+                </div>
+                <div class="section" data-section="xboxes" style="display: none;">
+                    <h2 class="text-2xl font-bold mb-4">X-Boxes</h2>
+                    <div class="map-container relative w-full aspect-video bg-gray-100 rounded-lg overflow-hidden shadow-inner border border-gray-200">
+                        <img id="school-map-xboxes" src="https://i.imgur.com/374CK1P.jpeg" alt="X-Boxes Map">
+                        <div id="marker-container-xboxes"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="classroom-details" class="details-card hidden">
+                <h3 id="details-name" class="text-2xl font-bold text-blue-800 mb-2"></h3>
+                <p id="details-description" class="text-gray-700"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
